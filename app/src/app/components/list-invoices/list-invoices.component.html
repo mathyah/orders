@@ -1,0 +1,21 @@
+<div>
+    <h2>List of Invoices of <strong>Order{{order_id}}</strong></h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Amount to Pay</th>
+                <th scope="col">Amount Paid</th>
+                <th scope="col">Remain Amount</th>
+                <th scope="col">Payments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let invoice of invoices;">
+                <td>{{ invoice.AMOUNT_TO_PAY }}</td>
+                <td>{{ invoice.AMOUNT_PAID ? invoice.AMOUNT_PAID : 0 }}</td>
+                <td>{{ invoice.AMOUNT_TO_PAY - invoice.AMOUNT_PAID }}</td>
+                <td><a href="#" [routerLink]="['/listpayments', invoice.ID, order_id]">Show Payments</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

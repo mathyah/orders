@@ -1,0 +1,20 @@
+<div>
+    <h2>List of Payments</h2>
+    <a href="#" class="btn btn-primary btn-sm ml-auto float-right" routerLink="/createpayment/{{invoice_id}}/{{order_id}}">Add Payment</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments;">
+                <td>{{ payment.AMOUNT }}</td>
+                <td>{{ payment.DATE.substr(0, 10) }}</td>
+                <td><a href="#" [routerLink]="['/editpayment', payment.ID, invoice_id, order_id]">Edit</a>, <a href="#" (click)="deletePayment($event, payment.ID);">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

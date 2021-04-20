@@ -1,0 +1,33 @@
+<div>
+    <h2>List of Orders</h2>
+    <a href="#" style="margin: 10px!important;" class="btn btn-primary btn-sm ml-auto float-right" routerLink="/createorder">Add Order</a>
+    <a href="#" style="margin: 10px !important;" class="btn btn-primary btn-sm ml-auto float-right" (click)="getOrdersJson($event);">Get JSON</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Order Number</th>
+                <th scope="col">Client</th>
+                <th scope="col">Invoices</th>
+                <th scope="col">Actions</th>
+                <th scope="col">JSON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders;">
+                <td>{{ order.STATUS }}</td>
+                <td>{{ 'Order' + order.ID }}</td>
+                <td>{{ order.CLIENT }}</td>
+                <td><a href="#" [routerLink]="['/listinvoices', order.ID]">Show Invoice</a></td>
+                <td>
+                    <span *ngIf="order.STATUS == 'Open'">
+                        <a href="#" [routerLink]="['/editorder', order.ID]">Edit</a>, 
+                        <a href="#" (click)="deleteOrder($event, order.ID);">Delete</a>, 
+                        <a href="#" [routerLink]="['/closeorder', order.ID]">Close</a>,
+                    </span>
+                </td>
+                <td><a href="#" (click)="getOrderByIdJson($event, order.ID);">Get JSON</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
